@@ -1,5 +1,5 @@
 export const appConfig = {
-    devPassword: 'dev123456',
-    md5Salt: 'yiapi-123456.',
+    devPassword: '123456',
+    md5Salt: 'kHT4HR',
     isSwagger: true
 };

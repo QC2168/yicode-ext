@@ -3,9 +3,9 @@ export const mysqlConfig = {
     development: {
         host: '127.0.0.1',
         port: 3306,
-        db: 'test3',
+        db: 'yiapi_demo',
         username: 'root',
-        password: 'root'
+        password: '123456'
     },
     // 生产环境配置
     production: {
