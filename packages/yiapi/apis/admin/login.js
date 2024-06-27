@@ -5,6 +5,7 @@ import { fnRoute } from '../../utils/fnRoute.js';
 import { fnSchema } from '../../utils/fnSchema.js';
 import { fnPureMD5 } from '../../utils/fnPureMD5.js';
 import { fnSaltMD5 } from '../../utils/fnSaltMD5.js';
+import { fnResponseSchame } from '../../utils/fnResponseSchame.js'
 // 配置文件
 import { httpConfig } from '../../config/http.js';
 // 数据表格
@@ -20,10 +21,16 @@ export default async (fastify) => {
         schemaRequest: {
             type: 'object',
             properties: {
-                account: fnSchema({ name: '账号', schema: { type: 'string', min: 1, max: 100 } }),
+                account: fnSchema(tableData.username),
                 password: fnSchema(tableData.password)
             },
             required: ['account', 'password']
+        },
+        schemaResponse: {
+            200: fnResponseSchame({
+                schema: tableData,
+                extract: ['password']
+            })
         },
         // 执行函数
         apiHandler: async (req, res) => {
