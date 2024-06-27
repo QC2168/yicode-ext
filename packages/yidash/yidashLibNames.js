@@ -1,1 +1,0 @@
-export const yidashLibNames = ['yd_address_areaMatch', 'yd_address_short', 'yd_browser_exitFullScreen', 'yd_browser_openFullscreen', 'yd_datetime_leftTime', 'yd_datetime_relativeTime', 'yd_number_thousands', 'yd_number_validNumber', 'yd_regexp_trainNumber', 'yd_string_displace', 'yd_tree_array2Tree', 'yd_tree_traverse'];
