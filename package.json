@@ -1,52 +1,41 @@
 {
-    "name": "root",
-    "version": "0.0.0",
-    "private": true,
-    "type": "module",
-    "publishConfig": {
-        "access": "restricted"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/chenbimo/yicode.git"
-    },
-    "description": "随易科技（yicode.tech） - 软件开发生态",
-    "homepage": "https://chensuiyi.me",
-    "main": "index.js",
-    "scripts": {
-        "r": "lerna publish",
-        "c": "pnpm dlx lerna clean"
-    },
-    "keywords": [
-        "yicode",
-        "cli",
-        "webpack",
-        "vite",
-        "vue",
-        "vue2",
-        "vue3",
-        "nodejs"
-    ],
-    "author": "chensuiyi <bimostyle@qq.com>",
-    "devDependencies": {
-        "@commitlint/cli": "^19.3.0",
-        "@yicode/commit-lint": "workspace:^",
-        "lerna": "^8.1.5",
-        "lint-staged": "^15.2.7",
-        "prettier": "^3.3.2",
-        "rollup": "^4.18.0",
-        "simple-git-hooks": "^2.11.1"
-    },
-    "simple-git-hooks": {
-        "commit-msg": "pnpm commitlint --edit ${1}",
-        "pre-commit": "pnpm lint-staged"
-    },
-    "lint-staged": {
-        "*.{js,css,scss,less,ts,jsx,vue,html,json,md,yaml}": "prettier --write"
-    },
-    "commitlint": {
-        "extends": [
-            "@yicode/commit-lint"
-        ]
-    }
+  "name": "root",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenbimo/yicode.git"
+  },
+  "description": "随易科技（yicode.tech） - 软件开发生态",
+  "homepage": "https://chensuiyi.me",
+  "main": "index.js",
+  "scripts": {
+    "r": "lerna publish",
+    "c": "pnpm dlx lerna clean",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "yicode",
+    "cli",
+    "webpack",
+    "vite",
+    "vue",
+    "vue2",
+    "vue3",
+    "nodejs"
+  ],
+  "author": "chensuiyi <bimostyle@qq.com>",
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.0.11",
+    "lerna": "^8.1.5",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "rollup": "^4.18.0"
+  }
 }
