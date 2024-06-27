@@ -9,7 +9,7 @@ export const httpConfig = Object.assign(importConfig, {
     SELECT_SUCCESS: { symbol: 'SELECT_SUCCESS', code: 0, msg: '查询成功' },
     UPDATE_SUCCESS: { symbol: 'UPDATE_SUCCESS', code: 0, msg: '更新成功' },
     DELETE_SUCCESS: { symbol: 'DELETE_SUCCESS', code: 0, msg: '删除成功' },
-    FAIL: { symbol: 'FAIL', code: 1, msg: '操作失败' },
+    FAIL: { symbol: 'FAIL', code: 1, msg: '操作失败', data: null },
     INSERT_FAIL: { symbol: 'INSERT_FAIL', code: 1, msg: '添加失败' },
     SELECT_FAIL: { symbol: 'SELECT_FAIL', code: 1, msg: '查询失败' },
     UPDATE_FAIL: { symbol: 'UPDATE_FAIL', code: 1, msg: '更新失败' },

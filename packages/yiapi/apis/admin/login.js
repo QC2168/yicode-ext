@@ -5,7 +5,7 @@ import { fnRoute } from '../../utils/fnRoute.js';
 import { fnSchema } from '../../utils/fnSchema.js';
 import { fnPureMD5 } from '../../utils/fnPureMD5.js';
 import { fnSaltMD5 } from '../../utils/fnSaltMD5.js';
-import { fnResponseSchame } from '../../utils/fnResponseSchame.js'
+import { fnResponseSchema } from '../../utils/fnResponseSchema.js'
 // 配置文件
 import { httpConfig } from '../../config/http.js';
 // 数据表格
@@ -27,13 +27,14 @@ export default async (fastify) => {
             required: ['account', 'password']
         },
         schemaResponse: {
-            200: fnResponseSchame({
+            200: fnResponseSchema({
                 schema: tableData,
                 extract: ['password']
-            })
+            }),
+            404: fnResponseSchema()
         },
         // 执行函数
-        apiHandler: async (req, res) => {
+        apiHandler: async (req, rep) => {
             try {
                 const adminModel = fastify.mysql.table('sys_admin');
                 const loginLogModel = fastify.mysql.table('sys_login_log');
@@ -45,20 +46,19 @@ export default async (fastify) => {
                     .orWhere({ username: req.body.account })
                     .selectOne(['id', 'password', 'username', 'nickname', 'role']);
 
-                // 判断用户存在
-                if (!adminData?.id) {
-                    return {
-                        ...httpConfig.FAIL,
-                        msg: '用户不存在'
-                    };
-                }
+                // 判断用户不存在
+                rep.code(404).send({
+                    ...httpConfig.FAIL,
+                    msg: '用户不存在'
+                });
+
 
                 // 判断密码
                 if (fnSaltMD5(req.body.password) !== adminData.password) {
-                    return {
+                    rep.code(404).send({
                         ...httpConfig.FAIL,
                         msg: '密码错误'
-                    };
+                    });
                 }
                 // 记录登录日志
                 await loginLogModel.clone().insertData({
@@ -84,10 +84,10 @@ export default async (fastify) => {
                 };
             } catch (err) {
                 fastify.log.error(err);
-                return {
+                rep.code(404).send({
                     ...httpConfig.FAIL,
                     msg: '登录失败'
-                };
+                });
             }
         }
     });
